@@ -1,5 +1,5 @@
 {
-  "name": "y",
+  "name": "@kosatyi/ejs-bundle",
   "version": "1.0.0",
   "type": "module",
   "main": "dist/index.cjs",
