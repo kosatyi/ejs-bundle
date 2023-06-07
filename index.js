@@ -11,7 +11,7 @@ const babelConfig = {
     },
 }
 
-const terserConfig = {
+const minifyConfig = {
     compress: {
         dead_code: false,
         side_effects: false,
@@ -35,7 +35,7 @@ const stageTransform = (content, config = {}) => {
 }
 
 const stageMinify = (content, config = {}) => {
-    return minify(content, Object.assign({}, terserConfig, config)).then(
+    return minify(content, Object.assign({}, minifyConfig, config)).then(
         (response) => response.code
     )
 }
@@ -60,8 +60,6 @@ export const bundle = async (config) => {
         let content = ''
         content = await stageRead(folder, name)
         content = await stageCompile(compile, content, name)
-        content = await stageTransform(content, transform)
-        content = await stageMinify(content, minify)
         return { name, content }
     })
     const files = await Promise.all(result)
@@ -73,7 +71,10 @@ export const bundle = async (config) => {
     if (folderExists === false) {
         await fs.mkdir(targetPath, { recursive: true })
     }
-    await fs.writeFile(target, wrapper(files))
+    let content = wrapper(files)
+    content = await stageTransform(content, transform)
+    content = await stageMinify(content, minify)
+    await fs.writeFile(target, content)
 }
 
 export const ejsBundle = (config) => {
