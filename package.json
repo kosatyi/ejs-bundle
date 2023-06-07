@@ -1,0 +1,41 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "source": "index.js",
+  "dependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "glob": "^10.2.7",
+    "terser": "^5.16.1"
+  },
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "exports": {
+    "import": "./dist/mjs/index.js",
+    "require": "./dist/cjs/index.js"
+  },
+  "devDependencies": {
+    "@kosatyi/ejs": "^0.0.29",
+    "rollup": "^3.24.0"
+  },
+  "peerDependencies": {
+    "rollup": "^2.x || ^3.x"
+  },
+  "peerDependenciesMeta": {
+    "rollup": {
+      "optional": true
+    }
+  },
+  "types": "index.d.ts",
+  "description": "@kosatyi/ejs template bundler",
+  "scripts": {
+    "build": "rm -rf dist && rollup -c"
+  },
+  "author": "Stepan Kosatyi",
+  "license": "MIT"
+}
