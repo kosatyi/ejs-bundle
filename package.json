@@ -34,7 +34,10 @@
   "types": "index.d.ts",
   "description": "@kosatyi/ejs template bundler",
   "scripts": {
-    "build": "rm -rf dist && rollup -c"
+    "build": "rm -rf dist && rollup -c",
+    "prepublishOnly": "npm run build",
+    "version": "npm run build",
+    "postversion": "git push && git push --tags"
   },
   "author": "Stepan Kosatyi",
   "license": "MIT"
