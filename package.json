@@ -15,10 +15,6 @@
     "dist",
     "index.d.ts"
   ],
-  "exports": {
-    "import": "./dist/mjs/index.mjs",
-    "require": "./dist/cjs/index.cjs"
-  },
   "devDependencies": {
     "@babel/plugin-transform-destructuring": "^7.21.3",
     "@kosatyi/ejs": "^0.0.29",
