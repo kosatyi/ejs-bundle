@@ -51,8 +51,8 @@ export const bundle = async (config) => {
         wrapper,
         folder,
         target,
-        transform,
-        minify,
+        transform = {},
+        minify = {},
     } = config
     const pattern = '**/*.'.concat(extension)
     const list = await glob(pattern, { cwd: folder })
@@ -72,8 +72,8 @@ export const bundle = async (config) => {
         await fs.mkdir(targetPath, { recursive: true })
     }
     let content = wrapper(files)
-    content = await stageTransform(content, transform)
-    content = await stageMinify(content, minify)
+    if (transform) content = await stageTransform(content, transform)
+    if (minify) content = await stageMinify(content, minify)
     await fs.writeFile(target, content)
 }
 
