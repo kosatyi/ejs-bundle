@@ -15,8 +15,8 @@ export interface ejsBundleConfig {
     compile?: Compile
     wrapper?: Wrapper
     extension?: string
-    transform?: object
-    minify?: MinifyOptions
+    transform?: object | boolean
+    minify?: MinifyOptions | boolean
 }
 
 export function bundle(config: ejsBundleConfig): Promise<any>
