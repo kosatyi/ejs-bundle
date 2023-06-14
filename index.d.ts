@@ -1,24 +1,24 @@
 import type { Plugin } from 'rollup'
 import type { MinifyOptions } from 'terser'
 
-interface ejsBundleItem {
-    name: string
-    content: string
+export interface EjsConfig {
+    path?: string
+    export?: string | 'ejsPrecompile'
+    extension?: 'ejs'
+    withObject?: false
+    [key: string]: any
 }
 
-type Wrapper = (list: ejsBundleItem[]) => string
-type Compile = (content: string, name: string) => string
-
-export interface ejsBundleConfig {
-    folder: string
-    target: string
-    compile?: Compile
-    wrapper?: Wrapper
-    extension?: string
-    transform?: object | boolean
-    minify?: MinifyOptions | boolean
+export interface BundlerOptions {
+    target: string[] | string
+    transform?: 'commonjs' | 'esm' | 'amd' | false
+    minify?: boolean
 }
 
-export function bundle(config: ejsBundleConfig): Promise<any>
+export function bundle(options: BundlerOptions, config: EjsConfig): Promise<any>
 
-export function ejsBundle(config: ejsBundleConfig): Plugin
+export function ejsBundle(options: BundlerOptions, config: EjsConfig): Plugin
+
+export class Bundler {
+    new(options: BundlerOptions, config: EjsConfig): Bundler
+}
