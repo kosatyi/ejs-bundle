@@ -1,5 +1,4 @@
 import type { Plugin } from 'rollup'
-import type { MinifyOptions } from 'terser'
 
 export interface EjsConfig {
     path?: string
