@@ -52,28 +52,50 @@ export class Bundler {
     }
     async stageTransform(content) {
         if (this.options.transform === false) return content
-        const modules = this.options.transform
-        const strictMode = !!this.config.withObject
+        const modules = this.options.transform ?? 'auto'
+        const strictMode = this.config.withObject === false
         const moduleId = this.config.export
         const config = {
-            presets: [['@babel/preset-env', { modules }]],
-            plugins: [['@babel/plugin-transform-modules-umd', { moduleId }]],
-            parserOpts: { strictMode },
+            presets: [['@babel/preset-env']],
+            sourceType: 'script',
         }
         const response = await babel.transformAsync(content, config)
         return response.code
     }
     getBundle() {
-        const output = []
-        output.push('const templates = {}')
+        const transform = this.options.transform
+        const moduleId = this.config.export
+        const useStrict = this.config.withObject === false
+        const out = []
+        if (transform) {
+            out.push('(function(global,factory){')
+            out.push(
+                'typeof exports === "object" && typeof module !== "undefined" ?'
+            )
+            out.push('module.exports = factory():')
+            out.push(
+                'typeof define === "function" && define.amd ? define(factory):'
+            )
+            out.push(
+                '(global = typeof globalThis !== "undefined" ? globalThis:'
+            )
+            out.push('global || self,global["' + moduleId + '"] = factory())')
+            out.push('})(this,(function(){')
+        }
+        if (useStrict) out.push("'use strict'")
+        out.push('const templates = {}')
         Object.entries(this.templates).forEach(([name, content]) => {
             name = JSON.stringify(name)
             content = String(content)
-            output.push(`templates[${name}] = ${content}`)
+            out.push(`templates[${name}] = ${content}`)
         })
-        if (this.options.transform) output.push('export default templates')
-        else output.push('export { templates }')
-        return output.join('\n')
+        if (transform) {
+            out.push('return templates')
+            out.push('}))')
+        } else {
+            out.push('module.exports = templates')
+        }
+        return out.join('\n')
     }
     async concat() {
         const pattern = '**/*.'.concat(this.config.extension)

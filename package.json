@@ -17,9 +17,7 @@
     "index.d.ts"
   ],
   "devDependencies": {
-    "@babel/plugin-transform-destructuring": "^7.21.3",
     "@kosatyi/ejs": "^0.0.33",
-    "babel-minify": "^0.5.2",
     "rollup": "^3.24.0"
   },
   "peerDependencies": {

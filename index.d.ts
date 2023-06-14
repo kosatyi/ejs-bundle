@@ -10,7 +10,7 @@ export interface EjsConfig {
 
 export interface BundlerOptions {
     target: string[] | string
-    transform?: 'commonjs' | 'esm' | 'amd' | false
+    transform?: boolean
     minify?: boolean
 }
 
