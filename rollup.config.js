@@ -10,5 +10,5 @@ export default {
             format: 'cjs',
         },
     ],
-    external: ['fs', 'path', 'glob', 'terser', '@babel/core'],
+    external: ['fs', 'path', 'glob', 'terser', '@kosatyi/ejs', '@babel/core'],
 }
