@@ -27,8 +27,8 @@ export class Bundler {
      */
     config = {}
     constructor(options, config) {
-        extend(this.options, options)
-        this.config = configure(config)
+        extend(this.options, options || {})
+        this.config = configure(config || {})
         this.templates = {}
     }
     stageRead(path) {
