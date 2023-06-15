@@ -2,7 +2,7 @@ import type { Plugin } from 'rollup'
 
 export interface EjsConfig {
     path?: string
-    export?: string | 'ejsPrecompile'
+    export?: string | 'ejsPrecompiled'
     extension?: 'ejs'
     withObject?: false
     [key: string]: any
