@@ -93,7 +93,7 @@ export class Bundler {
             out.push('return templates')
             out.push('}))')
         } else {
-            out.push('module.exports = templates')
+            out.push('export default templates')
         }
         return out.join('\n')
     }
