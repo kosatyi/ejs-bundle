@@ -14,6 +14,10 @@ export interface BundlerOptions {
     minify?: boolean
 }
 
+export interface WatcherOptions {
+    dir: string
+}
+
 export function bundle(options: BundlerOptions, config: EjsConfig): Promise<any>
 
 export function ejsBundle(options: BundlerOptions, config: EjsConfig): Plugin

@@ -19,7 +19,7 @@ export class Bundler {
      */
     options = {
         target: [],
-        transform: 'umd',
+        transform: true,
         minify: true,
     }
     /**
@@ -156,6 +156,23 @@ export const ejsBundle = (options, config) => {
         },
         async buildEnd() {
             await bundler.output()
+        },
+    }
+}
+/**
+ *
+ * @param {WatcherOptions} options
+ * @returns {*}
+ */
+export const ejsWatch = (options) => {
+    const { dir } = options
+    return {
+        name: 'watch',
+        async buildStart() {
+            const list = await glob('**/*.ejs', { cwd: dir })
+            for (let file of list) {
+                this.addWatchFile(join(dir, file))
+            }
         },
     }
 }
