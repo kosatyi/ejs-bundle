@@ -22,6 +22,8 @@ export function bundle(options: BundlerOptions, config: EjsConfig): Promise<any>
 
 export function ejsBundle(options: BundlerOptions, config: EjsConfig): Plugin
 
+export function ejsWatch(options: WatcherOptions): Plugin
+
 export class Bundler {
     new(options: BundlerOptions, config: EjsConfig): Bundler
 }
