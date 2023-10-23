@@ -22,7 +22,7 @@
       "import": "./dist/esm/ejs.js",
       "require": "./dist/cjs/ejs.js"
     }
-  }
+  },
   "devDependencies": {
     "@kosatyi/ejs": "^0.0.46",
     "rollup": "^3.24.0"
