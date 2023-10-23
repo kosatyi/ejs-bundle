@@ -19,8 +19,8 @@
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./dist/esm/ejs.js",
-      "require": "./dist/cjs/ejs.js"
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
     }
   },
   "devDependencies": {
