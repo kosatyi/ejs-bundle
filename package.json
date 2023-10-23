@@ -2,8 +2,8 @@
   "name": "@kosatyi/ejs-bundle",
   "version": "1.0.12",
   "type": "module",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "source": "index.js",
   "dependencies": {
     "@babel/core": "^7.20.12",
@@ -17,7 +17,7 @@
     "index.d.ts"
   ],
   "devDependencies": {
-    "@kosatyi/ejs": "^0.0.33",
+    "@kosatyi/ejs": "^0.0.46",
     "rollup": "^3.24.0"
   },
   "peerDependencies": {
