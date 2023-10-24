@@ -52,9 +52,6 @@ export class Bundler {
     }
     async stageTransform(content) {
         if (this.options.transform === false) return content
-        const modules = this.options.transform ?? 'auto'
-        const strictMode = this.config.withObject === false
-        const moduleId = this.config.export
         const config = {
             presets: [['@babel/preset-env']],
             sourceType: 'script',
