@@ -16,6 +16,7 @@ export interface BundlerOptions {
 
 export interface WatcherOptions {
     dir: string
+    pattern?: string
 }
 
 export function bundle(options: BundlerOptions, config: EjsConfig): Promise<any>

@@ -13,6 +13,10 @@ const extend = (target, ...sources) => {
     return Object.assign(target, ...sources.filter(isPlainObject))
 }
 
+const ejsWatchOptions = {
+    pattern: '**/*.ejs',
+}
+
 export class Bundler {
     /**
      * @type {BundlerOptions}
@@ -156,17 +160,18 @@ export const ejsBundle = (options, config) => {
         },
     }
 }
+
 /**
  *
  * @param {WatcherOptions} options
  * @returns {*}
  */
 export const ejsWatch = (options) => {
-    const { dir } = options
+    const { dir, pattern } = Object.assign({}, ejsWatchOptions, options)
     return {
         name: 'watch',
         async buildStart() {
-            const list = await glob('**/*.ejs', { cwd: dir })
+            const list = await glob(pattern, { cwd: dir })
             for (let file of list) {
                 this.addWatchFile(join(dir, file))
             }
