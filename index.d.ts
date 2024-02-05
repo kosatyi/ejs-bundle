@@ -11,6 +11,7 @@ export interface EjsConfig {
 export interface BundlerOptions {
     target: string[] | string
     transform?: boolean
+    timestamp?: boolean
     minify?: boolean
 }
 

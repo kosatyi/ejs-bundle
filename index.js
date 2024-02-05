@@ -25,6 +25,7 @@ export class Bundler {
         target: [],
         transform: true,
         minify: true,
+        timestamp: false,
     }
     /**
      * @type {EjsConfig}
@@ -67,6 +68,7 @@ export class Bundler {
         const transform = this.options.transform
         const moduleId = this.config.export
         const useStrict = this.config.withObject === false
+        const timestamp = this.options.timestamp
         const out = []
         if (transform) {
             out.push('(function(global,factory){')
@@ -84,6 +86,7 @@ export class Bundler {
             out.push('})(this,(function(){')
         }
         if (useStrict) out.push("'use strict'")
+        if (timestamp) out.push(['//', Date.now()].join(' '))
         out.push('const templates = {}')
         Object.entries(this.templates).forEach(([name, content]) => {
             name = JSON.stringify(name)
