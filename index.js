@@ -86,7 +86,7 @@ export class Bundler {
             out.push('})(this,(function(){')
         }
         if (useStrict) out.push("'use strict'")
-        if (timestamp) out.push(['//', Date.now()].join(' '))
+        if (timestamp) out.push('const timestamp = '.concat(String(Date.now())))
         out.push('const templates = {}')
         Object.entries(this.templates).forEach(([name, content]) => {
             name = JSON.stringify(name)
