@@ -28,7 +28,7 @@
     "rollup": "^3.24.0"
   },
   "peerDependencies": {
-    "rollup": "^2.x || ^3.x"
+    "rollup": "^2.x || ^3.x || ^4.x"
   },
   "peerDependenciesMeta": {
     "rollup": {
