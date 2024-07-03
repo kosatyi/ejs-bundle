@@ -25,7 +25,7 @@ export class Bundler {
         target: [],
         transform: true,
         minify: true,
-        timestamp: false,
+        timestamp: true,
     }
     /**
      * @type {EjsConfig}
