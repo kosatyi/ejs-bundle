@@ -9,6 +9,7 @@
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",
     "glob": "^10.2.7",
+    "process.argv": "^0.6.1",
     "terser": "^5.16.1"
   },
   "files": [
@@ -16,6 +17,9 @@
     "src",
     "index.d.ts"
   ],
+  "bin": {
+    "ejs-bundle": "bin/bundle.js"
+  },
   "exports": {
     ".": {
       "types": "./index.d.ts",
