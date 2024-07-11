@@ -136,8 +136,8 @@ export class Bundler {
 
 /**
  *
- * @param {BundlerOptions} options
- * @param {EjsConfig} [config]
+ * @param {BundlerOptions|Object<string,any>} options
+ * @param {EjsConfig|Object<string,any>} [config]
  * @returns {Promise<void>}
  */
 export const bundle = async (options, config) => {
@@ -147,8 +147,8 @@ export const bundle = async (options, config) => {
 }
 /**
  *
- * @param {BundlerOptions} options
- * @param {EjsConfig} [config]
+ * @param {BundlerOptions|Object<string,any>} options
+ * @param {EjsConfig|Object<string,any>} [config]
  * @returns {*}
  */
 export const ejsBundle = (options, config) => {

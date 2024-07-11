@@ -6,29 +6,34 @@ import { bundle } from '../index.js'
 
 const schema = argv(process.argv.slice(2))
 
-/**
- *
- * @type {BundlerOptions}
- */
 const params = schema({
     target: null,
     transform: false,
     timestamp: true,
     minify: false,
+    withObject: false,
+    export: 'ejsPrecompiled',
+    path: 'views',
+    extension: 'ejs',
 })
 
 if (typeof params.target !== 'string') {
     throw new Error('target is not a string')
 }
 
-/**
- *
- * @type {EjsConfig}
- */
-const config = {
-    withObject: false,
-}
-
-await bundle(params, config).then(() => {
+await bundle(
+    {
+        target: params.target,
+        transform: params.transform,
+        timestamp: params.timestamp,
+        minify: params.minify,
+    },
+    {
+        withObject: params.withObject,
+        path: params.path,
+        export: params.export,
+        extension: params.extension,
+    }
+).then(() => {
     console.log('bundle complete', params.target)
 })

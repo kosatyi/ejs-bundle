@@ -20,9 +20,15 @@ export interface WatcherOptions {
     pattern?: string
 }
 
-export function bundle(options: BundlerOptions, config: EjsConfig): Promise<any>
+export function bundle(
+    options: BundlerOptions | object,
+    config: EjsConfig | object
+): Promise<any>
 
-export function ejsBundle(options: BundlerOptions, config: EjsConfig): Plugin
+export function ejsBundle(
+    options: BundlerOptions | object,
+    config: EjsConfig | object
+): Plugin
 
 export function ejsWatch(options: WatcherOptions): Plugin
 
