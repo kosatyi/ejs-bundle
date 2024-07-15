@@ -2,7 +2,7 @@
 
 import argv from 'process.argv'
 
-import { bundle } from '../index.js'
+import { bundle } from '../dist/esm/index.js'
 
 const schema = argv(process.argv.slice(2))
 
