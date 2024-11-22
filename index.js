@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs'
 import { glob } from 'glob'
-import { dirname, join } from 'path'
+import { dirname, extname, join } from 'path'
 import { minify } from 'terser'
 import { compile, configure } from '@kosatyi/ejs'
 import babel from '@babel/core'
@@ -101,6 +101,28 @@ export class Bundler {
         }
         return out.join('\n')
     }
+    async watch() {
+        console.log(`ejs-bundle: watching directory - ${this.config.path}`)
+        try {
+            const watcher = fs.watch(this.config.path, { recursive: true })
+            for await (const { filename } of watcher) {
+                if (extname(filename).slice(1) === this.config.extension) {
+                    console.log(`ejs-bundle: file is changed - ${filename}`)
+                    await this.build()
+                }
+            }
+        } catch (err) {
+            throw err
+        }
+    }
+    async build() {
+        if (this.buildInProgress === true) return false
+        this.buildInProgress = true
+        await this.concat().catch(console.error)
+        await this.output().catch(console.error)
+        console.log(`ejs-bundle: bundle complete - ${this.options.target}`)
+        this.buildInProgress = false
+    }
     async concat() {
         const pattern = '**/*.'.concat(this.config.extension)
         const list = await glob(pattern, { cwd: this.config.path })
@@ -142,8 +164,7 @@ export class Bundler {
  */
 export const bundle = async (options, config) => {
     const bundler = new Bundler(options, config)
-    await bundler.concat()
-    await bundler.output()
+    await bundler.build()
 }
 /**
  *
