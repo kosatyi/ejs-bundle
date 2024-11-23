@@ -45,8 +45,8 @@ const timeoutCallback = (callback, idle) => {
 
 const bundler = new Bundler(options, config)
 
+await bundler.build()
+
 if (params.watch && params.path) {
     await bundler.watch()
-} else {
-    await bundler.build()
 }
