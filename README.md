@@ -11,7 +11,7 @@ Compile [EJS](https://github.com/kosatyi/ejs) templates in one js file
 You can get EJS via [npm](http://npmjs.com).
 
 ```bash
-$ npm install @kosatyi/ejs
+$ npm install @kosatyi/ejs-bundle
 ```
 
 ## Basic usage
