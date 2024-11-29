@@ -1,6 +1,5 @@
 #! /usr/bin/env node
-import { watch } from 'fs'
-import { resolve, extname } from 'path'
+
 import argv from 'process.argv'
 
 import { Bundler } from '../dist/esm/index.js'
@@ -33,14 +32,6 @@ const config = {
     path: params.path,
     export: params.export,
     extension: params.extension,
-}
-
-const timeoutCallback = (callback, idle) => {
-    let context = null
-    return (...args) => {
-        clearTimeout(context)
-        context = setTimeout(callback, idle, ...args)
-    }
 }
 
 const bundler = new Bundler(options, config)

@@ -29,11 +29,12 @@
     }
   },
   "devDependencies": {
-    "@kosatyi/ejs": "^0.0.47",
-    "rollup": "^3.24.0"
+    "@kosatyi/ejs": "^0.0.76",
+    "rollup": "^4.27.4"
   },
   "peerDependencies": {
-    "rollup": "^2.x || ^3.x || ^4.x"
+    "@kosatyi/ejs": "^0.0.76",
+    "rollup": "^4.x"
   },
   "peerDependenciesMeta": {
     "rollup": {
@@ -45,7 +46,7 @@
     "url": "git://github.com/kosatyi/ejs-bundle.git"
   },
   "types": "index.d.ts",
-  "description": "@kosatyi/ejs template bundler",
+  "description": "@kosatyi/ejs ejs template bundler",
   "scripts": {
     "start": "rm -rf dist && rollup -c -w",
     "build": "rm -rf dist && rollup -c",
