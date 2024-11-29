@@ -1,6 +1,6 @@
 {
   "name": "@kosatyi/ejs-bundle",
-  "version": "1.0.29",
+  "version": "1.0.30",
   "type": "module",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
